@@ -1,3 +1,4 @@
+import 'package:donut_app_2b_aguilar/utils/donut_tile.dart';
 import 'package:flutter/material.dart';
 
 class DonutTab extends StatelessWidget {
@@ -17,22 +18,35 @@ class DonutTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Para acomodar ellementos en cuadricula //GridView
     return  GridView.builder(
-      // elementos en nuestra lista
+      // cuantos elementos tengo
+      // elementos en nuestra lista //itemCount
       itemCount: donutsOnsale.length,
       padding: const EdgeInsets.all(8.0),
+      //prepa 1: organiza como distribuir elementos en la cuadricula //gridDelegate
+      // sliver permite crear listas y scrolls eficientes con efectos personalizados y optimizados //sliver
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        //numero de columnas
+        //numero de columnas //crossAxisCount
         crossAxisCount: 2),
       itemBuilder: (context, index){
         return DonutTile(
           donutFlavor: donutsOnsale[index][0],
           donutPrice: donutsOnsale[index][1],
           donutColor: donutsOnsale[index][2],
-          donutName: donutsOnsale[index][3],
+          imageName: donutsOnsale[index][3],
         );
-
-      };
+      },
     );
   }
 }
+
+
+//grid,en español es como malla o cuadricula
+
+   // elementos en nuestra lista
+   // itemCount: donutsOnsale.length,
+   //el eje principal en una columna es vertical
+   //el eje cruzado crosaxis para horizontal
+   //main axis un columna seria vertical
+   //Starting GridView
