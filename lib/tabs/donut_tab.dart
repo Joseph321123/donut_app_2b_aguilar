@@ -28,7 +28,10 @@ class DonutTab extends StatelessWidget {
       // sliver permite crear listas y scrolls eficientes con efectos personalizados y optimizados //sliver
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         //numero de columnas //crossAxisCount
-        crossAxisCount: 2),
+        crossAxisCount: 2,
+        //relacion de aspecto (proporcion)
+        childAspectRatio: 1/1.5
+        ),
       itemBuilder: (context, index){
         return DonutTile(
           donutFlavor: donutsOnsale[index][0],
