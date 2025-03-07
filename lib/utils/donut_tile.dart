@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 class DonutTile extends StatelessWidget {
   final String donutFlavor;
+  final String donutStore;
   final String donutPrice;
   //dynamic sera un tipo de color
   final dynamic donutColor;
   final String imageName;
-  const DonutTile({super.key, required this.donutFlavor, required this.donutPrice, this.donutColor, required this.imageName});
+  const DonutTile({super.key, required this.donutFlavor, required this.donutStore, required this.donutPrice, this.donutColor, required this.imageName});
 
   @override
   Widget build(BuildContext context) {
@@ -40,20 +41,58 @@ class DonutTile extends StatelessWidget {
                 )
               ],
             ),
+    
+
 
             //Donut Picture imagen de la dona
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 34),
               child: Image.asset(imageName),
-              )
+              ),
 
             //donut text, texto de la dona
+            Text(donutFlavor, 
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            SizedBox(
+              height: 4,
+            ),
+            // agregar texto de la tienda
+            Text(donutStore, 
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            SizedBox(
+              height: 4,
+            ),
 
+            
             //Love icon + add button, icono de me encanta e icono de agregar
+            Padding(
+              padding: EdgeInsets.all(12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(
+                    Icons.favorite_border,
+                    color: Colors.pink[400],
+                  ),
+                  Text(
+                    "Add",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline
+                    ),
+                  )
+                ],
+              ),
+               ),
+
           ],
         ),
       ),
     );
+
+
+
   }
 }
 
