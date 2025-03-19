@@ -30,7 +30,7 @@ class DonutTab extends StatelessWidget {
         //numero de columnas //crossAxisCount
         crossAxisCount: 2,
         //relacion de aspecto (proporcion)
-        childAspectRatio: 1/1.5
+        childAspectRatio: 1/1.3
         ),
       itemBuilder: (context, index){
         return DonutTile(
