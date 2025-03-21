@@ -18,7 +18,9 @@ class DonutTab extends StatelessWidget {
   ];
 
 
-  DonutTab({super.key});
+  final Function(double) onAddToCart; // Recibe la función para agregar al carrito
+
+  DonutTab({super.key, required this.onAddToCart}); // Constructor que recibe la función
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class DonutTab extends StatelessWidget {
           donutPrice: donutsOnsale[index][2],
           donutColor: donutsOnsale[index][3],
           imageName: donutsOnsale[index][4],
-
+          onAddToCart: onAddToCart, // Pasar la función para agregar al carrito
         );
       },
     );

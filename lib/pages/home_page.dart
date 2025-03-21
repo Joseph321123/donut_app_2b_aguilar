@@ -15,6 +15,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  // Variables para el carrito
+  int _itemCount = 0;
+  double _totalPrice = 0.0;
+
+
   List<Widget> myTabs = [
     //donutab
     MyTab(iconPath: 'lib/icons/donut.png',),
@@ -26,13 +32,22 @@ class _HomePageState extends State<HomePage> {
     MyTab(iconPath: 'lib/icons/pancakes.png',),
     //pizzatab
     MyTab(iconPath: 'lib/icons/pizza.png',),
+    
     ];
 
+  // Función para agregar ítems al carrito
+  void _addItemToCart(double itemPrice) {
+    setState(() {
+      _itemCount++;
+      _totalPrice += itemPrice;
+    });
+  }
+  
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 6,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -73,11 +88,11 @@ class _HomePageState extends State<HomePage> {
             //tabbarview (Contenido de pestañas)
             Expanded(
               child: TabBarView(children: [
-              DonutTab(),
-              BurgerTab(),
-              SmoothieTab(),
-              PancakesTab(),
-              PizzaTab()
+                DonutTab(onAddToCart: _addItemToCart),
+                BurgerTab(onAddToCart: _addItemToCart),
+                SmoothieTab(onAddToCart: _addItemToCart),
+                PancakesTab(onAddToCart: _addItemToCart),
+                PizzaTab(onAddToCart: _addItemToCart),
               
               ]),
             ),
@@ -90,12 +105,12 @@ class _HomePageState extends State<HomePage> {
                 //poner los elementos en los extremos de la fila
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Padding(padding: EdgeInsets.only(left: 28),
+                  Padding(padding: EdgeInsets.only(left: 28),
                   child: Column(
                     //alinearlo a la izquierda
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('2 Items | \$45', style: TextStyle(fontSize: 18,
+                      Text('$_itemCount Items | \$${_totalPrice.toStringAsFixed(2)}', style: TextStyle(fontSize: 18,
                       //negritas
                       fontWeight: FontWeight.bold),
                       ),

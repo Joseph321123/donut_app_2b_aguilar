@@ -7,7 +7,9 @@ class DonutTile extends StatelessWidget {
   //dynamic sera un tipo de color
   final dynamic donutColor;
   final String imageName;
-  const DonutTile({super.key, required this.donutFlavor, required this.donutStore, required this.donutPrice, this.donutColor, required this.imageName});
+  const DonutTile({super.key, required this.donutFlavor, required this.donutStore, required this.donutPrice, this.donutColor, required this.imageName, required this.onAddToCart,});
+
+  final Function(double) onAddToCart;  // Nueva función para agregar al carrito
 
   @override
   Widget build(BuildContext context) {
@@ -74,25 +76,28 @@ class DonutTile extends StatelessWidget {
                     Icons.favorite_border,
                     color: Colors.pink[400],
                   ),
-                  Text(
-                    "Add",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline
+                  GestureDetector(
+                    onTap: () {
+                      // Llamamos a la función para agregar el precio al carrito
+                      double price = double.parse(donutPrice);
+                      onAddToCart(price);
+                    },
+                    child: Text(
+                      "Add",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
-               ),
-
+            ),
           ],
         ),
       ),
     );
-
-
-
   }
 }
 
