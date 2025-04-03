@@ -7,14 +7,6 @@ import 'package:donut_app_2b_aguilar/tabs/smoothie_tab.dart';
 import 'package:donut_app_2b_aguilar/utils/my_tab.dart';
 import 'package:flutter/material.dart';
 
-//import 'package:firebase_core/firebase_core.dart';
-//import 'firebase_options.dart';
-
-// ...
-
-//await Firebase.initializeApp(
-//    options: DefaultFirebaseOptions.currentPlatform,
-//);
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
