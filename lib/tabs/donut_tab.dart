@@ -2,9 +2,14 @@ import 'package:donut_app_2b_aguilar/utils/donut_tile.dart';
 import 'package:flutter/material.dart';
 
 class DonutTab extends StatelessWidget {
+  //const DonutTab({super.key});
 
-  // Lista de donas
-  final List donutsOnsale =[
+  final void Function(String, double) addToCart; // ✅ Usa void Function
+
+ DonutTab({super.key, required this.addToCart}); 
+
+  //lista donas
+  final List donutsOnSale = [
     //[donutFlavor, donutStore, donutPrice, donotColor,imageName]
     ["Ice Cream","Krispy Kreme", "36", Colors.blue, "lib/images/icecream_donut.png"],
     ["Strawberry","Dunkin Donuts", "45", Colors.red, "lib/images/strawberry_donut.png"],
@@ -17,47 +22,28 @@ class DonutTab extends StatelessWidget {
     
   ];
 
-
-  final Function(double) onAddToCart; // Recibe la función para agregar al carrito
-
-  DonutTab({super.key, required this.onAddToCart}); // Constructor que recibe la función
-
   @override
   Widget build(BuildContext context) {
-    //Para acomodar ellementos en cuadricula //GridView
-    return  GridView.builder(
-      // cuantos elementos tengo
-      // elementos en nuestra lista //itemCount
-      itemCount: donutsOnsale.length,
-      padding: const EdgeInsets.all(8.0),
-      //prepa 1: organiza como distribuir elementos en la cuadricula //gridDelegate
-      // sliver permite crear listas y scrolls eficientes con efectos personalizados y optimizados //sliver
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        //numero de columnas //crossAxisCount
-        crossAxisCount: 2,
-        //relacion de aspecto (proporcion)
-        childAspectRatio: 1/1.3
-        ),
-      itemBuilder: (context, index){
-        return DonutTile(
-          donutFlavor: donutsOnsale[index][0],
-          donutStore: donutsOnsale [index][1],
-          donutPrice: donutsOnsale[index][2],
-          donutColor: donutsOnsale[index][3],
-          imageName: donutsOnsale[index][4],
-          onAddToCart: onAddToCart, // Pasar la función para agregar al carrito
-        );
-      },
+    //WIDGET para acomodar elementos en Cuadricula 
+    return GridView.builder(
+      //Parametro que muestra los elementos en nuestra lista
+      itemCount:donutsOnSale.length,
+      padding: EdgeInsets.all(8.0),
+      //Prepa 1- Organiza cómo distribuir los elementos en una cuadricula
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2, //Num de columnas
+        childAspectRatio: 1/1.5 //Aspect ratio-proporción-ancho/alto
+      ),
+    itemBuilder:(context, index){
+      return DonutTile(
+        donutFlavor: donutsOnSale[index][0],
+        donutStore:donutsOnSale[index][1],
+        donutPrice: donutsOnSale[index][2],
+        donutColor: donutsOnSale[index][3],
+        imageName: donutsOnSale[index][4],
+        onTap: () => addToCart(donutsOnSale[index][0], double.parse(donutsOnSale[index][2])),  // Llama a addToCart
+      );
+    },
     );
   }
 }
-
-
-//grid,en español es como malla o cuadricula
-
-   // elementos en nuestra lista
-   // itemCount: donutsOnsale.length,
-   //el eje principal en una columna es vertical
-   //el eje cruzado crosaxis para horizontal
-   //main axis un columna seria vertical
-   //Starting GridView

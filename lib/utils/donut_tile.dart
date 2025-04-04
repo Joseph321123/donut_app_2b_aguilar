@@ -2,103 +2,98 @@ import 'package:flutter/material.dart';
 
 class DonutTile extends StatelessWidget {
   final String donutFlavor;
-  final String donutStore;
   final String donutPrice;
-  //dynamic sera un tipo de color
+  final String donutStore;
+  //Dato dinamico
   final dynamic donutColor;
   final String imageName;
-  const DonutTile({super.key, required this.donutFlavor, required this.donutStore, required this.donutPrice, this.donutColor, required this.imageName, required this.onAddToCart,});
+  final VoidCallback onTap; // Función que se ejecuta al tocar
 
-  final Function(double) onAddToCart;  // Nueva función para agregar al carrito
+  const DonutTile({super.key, required this.donutFlavor,required this.donutPrice, this.donutColor, required this.imageName, required this.donutStore, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: donutColor[100],
-          borderRadius: BorderRadius.circular(24)
-        ),
-        child: Column(
-          children: [
-            // PriceTag precio de la dona
-            Row(
-              //alinea a la derecha
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: donutColor[50],
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(24),
-                      bottomLeft: Radius.circular(24)
-                    )),
-                  padding: 
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
-                    child: Text('\$$donutPrice',
-                    style: TextStyle(fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: donutColor[800])),
-                )
-              ],
+    return GestureDetector(
+    onTap: onTap, // Ahora detecta clics y ejecuta la función
+      child: 
+        Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: donutColor[50],
+              borderRadius: BorderRadius.circular(24)
             ),
-    
-
-
-            //Donut Picture imagen de la dona
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 34),
-              child: Image.asset(imageName),
-              ),
-
-            //donut text, texto de la dona
-            Text(donutFlavor, 
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            SizedBox(
-              height: 4,
-            ),
-            // agregar texto de la tienda
-            Text(donutStore, 
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            SizedBox(
-              height: 4,
-            ),
-
-            
-            //Love icon + add button, icono de me encanta e icono de agregar
-            Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Column(
+            children: <Widget>[
+              //PriceTag
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,//Alinea a la derecha
                 children: [
-                  Icon(
-                    Icons.favorite_border,
-                    color: Colors.pink[400],
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // Llamamos a la función para agregar el precio al carrito
-                      double price = double.parse(donutPrice);
-                      onAddToCart(price);
-                    },
-                    child: Text(
-                      "Add",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline,
+                  Container(
+                    decoration: BoxDecoration(
+                      color:donutColor[200],
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(24), 
+                        bottomLeft: Radius.circular(24),
+                        topLeft: Radius.circular(0),
+                        bottomRight: Radius.circular(0),
+                        ),
+                    ),
+                    padding: 
+                      const EdgeInsets.symmetric( vertical:8, horizontal: 18),
+                    child:Text('\$ $donutPrice', 
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25, color:donutColor[800] )), //Para poner variable poner $
+                  )
+                ],
+                ),
+              //Donut picture
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical:12, horizontal:44),
+                child: Image.asset(imageName),
+              ),
+              //DonutText
+              Text(donutFlavor, 
+                style: TextStyle(fontWeight: FontWeight.bold,fontSize:22, color:donutColor[600]),
+              ),
+              const SizedBox(height:4,),
+              //TODO: Agregar texto dela tienda
+              Text(donutStore, 
+                style: TextStyle(fontWeight: FontWeight.bold,fontSize:15, color:donutColor[200]),
+              ),
+              const SizedBox(height:4,),
+        
+              //Love icon +  add button
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(
+                      Icons.favorite_border,
+                      color: Colors.pink[400],
+                    ),
+                    GestureDetector(
+                      onTap: onTap, // Ahora el botón "Add" también detecta clics
+                      child: Text(
+                        "Add",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey[800],
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline
+                        ),
+                              
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
+        
               ),
+            ],
+            
             ),
-          ],
+          ),
         ),
-      ),
     );
   }
 }
-
-//relacion de aspecto, proporcion

@@ -24,7 +24,10 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="donut_app_2b_aguilar">
+  <meta name="google-signin-client_id" content="301073631645-qp42j1b2d89347flqcln6mb6rt5vlb4i.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
@@ -33,6 +36,31 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <!-- Aquí inicia el bloque para Firebase -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCYw4UnqGA8kFTq2K5X8WoVcmQlgmnlLfI",
+      authDomain: "marzo-joseph-2b.firebaseapp.com",
+      projectId: "marzo-joseph-2b",
+      storageBucket: "marzo-joseph-2b.firebasestorage.app",
+      messagingSenderId: "301073631645",
+      appId: "1:301073631645:web:01f384a4b08075e6c6c774",
+      measurementId: "G-V97J8ZFNNT"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+  <!-- Aquí termina el bloque de Firebase -->
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

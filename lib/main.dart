@@ -1,26 +1,37 @@
-import 'package:donut_app_2b_aguilar/pages/home_page.dart';
+import 'package:donut_app_2b_aguilar/pages/home_page.dart'; 
+import 'package:donut_app_2b_aguilar/screen/login/startup_screen.dart';
 import 'package:flutter/material.dart';
 
+// Inicialización de Firebase
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'package:flutter/foundation.dart' show kIsWeb; 
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart'; 
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();  
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,  
+  );
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const StartUpScreen(),
     );
   }
 }
+
